@@ -33,6 +33,35 @@ public class EmployeeSignupService {
 		
 	}
 	
+	public String validateLogin(String username, String password) {
+		
+		String msg = "";
+		
+		try {
+			Optional<EmployeeSignup> opObj =	repository.findByEmpMail(username);
+			
+			EmployeeSignup empObj =  opObj.get();
+			
+			if(empObj.getPassword().equals(password)) {
+				
+				msg  ="Employee Login Sucessfull";
+				
+			}
+			else {
+				msg = "Employee Login Fail PLease check credentilas password";
+			}
+		}catch(Exception e) {
+			
+			msg = "Please check the username";
+		}
+		
+	
+	
+	
+		
+		return msg;
+	}
+	
 	
 	
 	

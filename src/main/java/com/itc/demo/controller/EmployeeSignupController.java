@@ -1,6 +1,9 @@
 package com.itc.demo.controller;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,12 @@ public class EmployeeSignupController {
 		System.out.println("in controller");
 		return service.saveSignupData(signup);
 	
+	}
+	
+	@PostMapping("/login/{username}/{password}")
+	public String employeeLogin(@PathVariable("username") String username ,@PathVariable("password") String password) {
+		
+		return service.validateLogin(username, password);
 	}
 	
 }
